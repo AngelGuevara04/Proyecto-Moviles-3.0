@@ -5,6 +5,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.widget.TextView
+import android.content.Intent
+
 
 class Registro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,5 +19,13 @@ class Registro : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val textViewIrInicioDeSesion = findViewById<TextView>(R.id.textViewIrInicioDeSesion)
+        textViewIrInicioDeSesion.setOnClickListener {
+            irInicioDeSesion()
+        }
+    }
+    private fun irInicioDeSesion() {
+        val intent = Intent(this, Iniciodesesion::class.java)
+        startActivity(intent)
     }
 }
