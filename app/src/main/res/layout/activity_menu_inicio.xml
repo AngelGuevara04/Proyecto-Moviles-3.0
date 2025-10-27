@@ -38,6 +38,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
+            android:id="@+id/buttonIrPerfil"
             style="@style/MenuButtom"
             android:layout_width="match_parent"
             android:backgroundTint="@color/btn_color"

@@ -7,8 +7,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.TextView
 import android.content.Intent
+import android.widget.Button
 import com.example.proyectomoviles30.util.PreferenceHelper
 import com.example.proyectomoviles30.util.PreferenceHelper.set
+
 
 class MenuInicio : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +28,10 @@ class MenuInicio : AppCompatActivity() {
             clearSessionPreference()
             irInicioDeSesion()
         }
+        val buttonIrPerfil = findViewById<Button>(R.id.buttonIrPerfil)
+        buttonIrPerfil.setOnClickListener {
+            irPerfil()
+        }
     }
 
     private fun irInicioDeSesion() {
@@ -36,5 +42,10 @@ class MenuInicio : AppCompatActivity() {
     private fun clearSessionPreference() {
         val preferences = PreferenceHelper.defaultPrefs(this)
         preferences["session"] = false
+    }
+
+    private fun irPerfil() {
+        val intent = Intent(this, Perfil::class.java)
+        startActivity(intent)
     }
 }
