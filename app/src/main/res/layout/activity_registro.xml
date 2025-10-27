@@ -37,12 +37,11 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
-            android:hint="Nombre y apellidos"
-            android:inputType="textPersonName"
-            android:textSize="15sp"
-            android:padding="15dp"/>
+            android:hint="Nombre completo"
+            android:inputType="textEmailAddress"
+            android:textSize="15sp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -85,6 +84,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
+            android:id="@+id/buttonIrInicioDeSesion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="Volver al login" />
+            android:text="¿Ya tienes cuenta? Inicia sesión" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.TextView
 import android.content.Intent
+import android.widget.Button
+
 
 
 class Registro : AppCompatActivity() {
@@ -21,6 +23,11 @@ class Registro : AppCompatActivity() {
         }
         val textViewIrInicioDeSesion = findViewById<TextView>(R.id.textViewIrInicioDeSesion)
         textViewIrInicioDeSesion.setOnClickListener {
+            irInicioDeSesion()
+        }
+
+        val buttonIrInicioDeSesion = findViewById<Button>(R.id.buttonIrInicioDeSesion)
+        buttonIrInicioDeSesion.setOnClickListener {
             irInicioDeSesion()
         }
     }
