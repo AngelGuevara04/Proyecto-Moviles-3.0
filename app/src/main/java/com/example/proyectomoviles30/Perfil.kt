@@ -24,6 +24,9 @@ class Perfil : AppCompatActivity() {
             irMenuInicio()
         }
 
+
+
+
     }
     private fun irMenuInicio() {
         finish()
