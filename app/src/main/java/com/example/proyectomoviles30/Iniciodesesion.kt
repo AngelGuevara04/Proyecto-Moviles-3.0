@@ -37,12 +37,23 @@ class Iniciodesesion : AppCompatActivity() {
         buttonIrMenuInicio.setOnClickListener {
             irMenuInicio()
         }
+
+        val buttonIrMenuInicioInvitado = findViewById<Button>(R.id.buttonIrMenuInicioInvitado)
+        buttonIrMenuInicioInvitado.setOnClickListener {
+            irMenuInicioInvitado()
+        }
     }
         private fun irRegistro() {
             val intent = Intent(this, Registro::class.java)
             startActivity(intent)
         }
         private fun irMenuInicio() {
+            val intent = Intent(this, MenuInicio::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        private fun irMenuInicioInvitado() {
             val intent = Intent(this, MenuInicio::class.java)
             createSessionPreference()
             startActivity(intent)

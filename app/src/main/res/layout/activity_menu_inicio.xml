@@ -42,9 +42,7 @@
             style="@style/MenuButtom"
             android:layout_width="match_parent"
             android:backgroundTint="@color/btn_color"
-            android:text="Perfil"
-
-            />
+            android:text="Perfil" />
 
         <Button
             android:id="@+id/buttonIrBuscar"

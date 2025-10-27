@@ -65,12 +65,17 @@
 
         <Button
             android:id="@+id/buttonIrMenuInicio"
+            style="@style/MenuButtom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
             android:backgroundTint="@color/btn_color"
             android:text="Iniciar sesión" />
+
+        <Button
+            android:id="@+id/buttonIrMenuInicioInvitado"
+            style="@style/MenuButtom"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/btn_color"
+            android:text="Iniciar sesión como invitado" />
 
         <TextView
             android:id="@+id/textViewIrRegistro"
