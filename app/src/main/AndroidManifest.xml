@@ -12,11 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoMoviles30">
         <activity
+            android:name=".Subastas"
+            android:exported="false"
+            android:launchMode="singleInstance"/>
+        <activity
+            android:name=".Buscar"
+            android:exported="false"
+            android:launchMode="singleInstance"/>
+        <activity
             android:name=".Perfil"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleInstance"/>
         <activity
             android:name=".MenuInicio"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleInstance"/>
         <activity
             android:name=".Registro"
             android:exported="false"

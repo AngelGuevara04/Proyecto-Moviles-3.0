@@ -28,9 +28,20 @@ class MenuInicio : AppCompatActivity() {
             clearSessionPreference()
             irInicioDeSesion()
         }
+
         val buttonIrPerfil = findViewById<Button>(R.id.buttonIrPerfil)
         buttonIrPerfil.setOnClickListener {
             irPerfil()
+        }
+
+        val buttonIrBuscar = findViewById<Button>(R.id.buttonIrBuscar)
+        buttonIrBuscar.setOnClickListener {
+            irBuscar()
+        }
+
+        val buttonIrSubastas = findViewById<Button>(R.id.buttonIrSubastas)
+        buttonIrSubastas.setOnClickListener {
+            irSubastas()
         }
     }
 
@@ -47,5 +58,16 @@ class MenuInicio : AppCompatActivity() {
     private fun irPerfil() {
         val intent = Intent(this, Perfil::class.java)
         startActivity(intent)
+    }
+
+    private fun irBuscar() {
+        val intent = Intent(this, Buscar::class.java)
+        startActivity(intent)
+    }
+
+    private fun irSubastas() {
+        val intent = Intent(this, Subastas::class.java)
+        startActivity(intent)
+
     }
 }

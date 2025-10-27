@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="60dp"
-            android:text="Menú"
+            android:text="Buscar"
             android:textSize="60sp" />
     </LinearLayout>
 
@@ -38,35 +38,30 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonIrPerfil"
             style="@style/MenuButtom"
             android:layout_width="match_parent"
             android:backgroundTint="@color/btn_color"
-            android:text="Perfil"
-
-            />
+            android:text="Menú 1" />
 
         <Button
-            android:id="@+id/buttonIrBuscar"
             style="@style/MenuButtom"
             android:layout_width="match_parent"
             android:backgroundTint="@color/btn_color"
-            android:text="Buscar" />
+            android:text="Menú 2" />
 
         <Button
-            android:id="@+id/buttonIrSubastas"
             style="@style/MenuButtom"
             android:layout_width="match_parent"
             android:backgroundTint="@color/btn_color"
-            android:text="Subastas" />
+            android:text="Menú 3" />
 
         <TextView
-            android:id="@+id/textViewCerrarSesion"
+            android:id="@+id/textViewIrMenuInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="Cerrar sesión" />
+            android:text="Volver al menú" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
