@@ -7,6 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.TextView
 import android.content.Intent
+import android.widget.Button
+
 
 class Iniciodesesion : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,9 +26,17 @@ class Iniciodesesion : AppCompatActivity() {
             irRegistro()
         }
 
+        val buttonIrMenuInicio = findViewById<Button>(R.id.buttonIrMenuInicio)
+        buttonIrMenuInicio.setOnClickListener {
+            irMenuInicio()
         }
+    }
         private fun irRegistro() {
             val intent = Intent(this, Registro::class.java)
+            startActivity(intent)
+        }
+        private fun irMenuInicio() {
+            val intent = Intent(this, MenuInicio::class.java)
             startActivity(intent)
         }
 }

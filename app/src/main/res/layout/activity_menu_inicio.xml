@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Iniciodesion">
+    tools:context=".MenuInicio">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -24,34 +24,6 @@
             android:layout_marginTop="60dp"
             android:text="Login"
             android:textSize="60sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="8dp"
-            android:text="Ingresa tu correo y contraseña"
-            android:textSize="20sp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="25dp"
-            android:hint="Correo electrónico"
-            android:inputType="textEmailAddress"
-            android:textSize="15sp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="25dp"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,24 +33,35 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonIrMenuInicio"
+            style="@style/MenuButtom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
             android:backgroundTint="@color/btn_color"
-            android:text="Iniciar sesión" />
+            android:text="Menú 1" />
+
+        <Button
+            style="@style/MenuButtom"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/btn_color"
+            android:text="Menú 2" />
+
+        <Button
+            style="@style/MenuButtom"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/btn_color"
+            android:text="Menú 3" />
 
         <TextView
-            android:id="@+id/textViewIrRegistro"
+            android:id="@+id/textViewCerrarSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="¿No tienes una cuenta?" />
+            android:text="Cerrar sesión" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
