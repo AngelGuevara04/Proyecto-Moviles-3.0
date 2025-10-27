@@ -32,7 +32,7 @@
             android:exported="false"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".Iniciodesesion"
+            android:name=".InicioDeSesion"
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleInstance"

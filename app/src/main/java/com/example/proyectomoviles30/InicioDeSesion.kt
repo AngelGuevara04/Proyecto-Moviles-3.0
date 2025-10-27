@@ -13,7 +13,7 @@ import com.example.proyectomoviles30.util.PreferenceHelper.get
 import com.example.proyectomoviles30.util.PreferenceHelper.set
 
 
-class Iniciodesesion : AppCompatActivity() {
+class InicioDeSesion : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -49,8 +49,6 @@ class Iniciodesesion : AppCompatActivity() {
         }
         private fun irMenuInicio() {
             val intent = Intent(this, MenuInicio::class.java)
-            startActivity(intent)
-            finish()
         }
 
         private fun irMenuInicioInvitado() {

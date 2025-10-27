@@ -46,7 +46,7 @@ class MenuInicio : AppCompatActivity() {
     }
 
     private fun irInicioDeSesion() {
-        val intent = Intent(this, Iniciodesesion::class.java)
+        val intent = Intent(this, InicioDeSesion::class.java)
         startActivity(intent)
     }
 
