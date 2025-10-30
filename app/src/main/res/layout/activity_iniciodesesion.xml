@@ -22,8 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="60dp"
-            android:text="Login"
-            android:textSize="60sp" />
+            android:text="Inicio de sesión"
+            android:textSize="40sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,10 +79,7 @@
 
         <TextView
             android:id="@+id/textViewIrRegistro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            style="@style/TextViewCambio"
             android:text="¿No tienes una cuenta? Regístrate" />
     </LinearLayout>
 

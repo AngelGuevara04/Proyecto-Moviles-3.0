@@ -70,9 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
-            android:text="nosé"
+            android:text="En proceso"
             android:textSize="25sp" />
-
 
     </LinearLayout>
 
@@ -88,31 +87,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.925">
 
-        <!--<Button
-            style="@style/MenuButtom"
-            android:layout_width="match_parent"
-            android:backgroundTint="@color/btn_color"
-            android:text="Menú 1" />
 
-        <Button
-            style="@style/MenuButtom"
-            android:layout_width="match_parent"
-            android:backgroundTint="@color/btn_color"
-            android:text="Menú 2" />
-
-        <Button
-            style="@style/MenuButtom"
-            android:layout_width="match_parent"
-            android:backgroundTint="@color/btn_color"
-            android:text="Menú 3" />
-            -->
 
         <TextView
             android:id="@+id/textViewIrMenuInicio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            style="@style/TextViewCambio"
             android:text="Volver al menú" />
     </LinearLayout>
 
