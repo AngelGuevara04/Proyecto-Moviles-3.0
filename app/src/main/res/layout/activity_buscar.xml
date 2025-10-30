@@ -35,9 +35,18 @@
             android:inputType="textEmailAddress"
             android:textSize="15sp"
             android:drawableRight="@drawable/busqueda_buscar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="90dp"
+            android:text="Proximamente..."
+            android:textSize="53sp" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -54,5 +63,6 @@
             style="@style/TextViewCambio"
             android:text="Volver al menú" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
