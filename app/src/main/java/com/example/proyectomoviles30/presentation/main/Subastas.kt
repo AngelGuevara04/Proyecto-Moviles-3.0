@@ -57,7 +57,6 @@ class Subastas : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerViewSubastas)
         // Ahora 'SubastasAdapter' y 'Subasta' se importan de sus propios archivos
         subastasAdapter = SubastasAdapter(listaDeSubastas) { subastaClickeada ->
-            // --- Manejar clic en un item de la lista ---
             // Aquí irías a la pantalla de detalle de la subasta
             Toast.makeText(this, "Viendo subasta de: ${subastaClickeada.titulo}", Toast.LENGTH_SHORT).show()
             // val intent = Intent(this, DetalleSubastaActivity::class.java)

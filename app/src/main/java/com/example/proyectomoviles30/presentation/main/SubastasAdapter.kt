@@ -8,14 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectomoviles30.R
 
-// --- Adaptador para el RecyclerView ---
-// Ahora vive en su propio archivo y puede ser usado por cualquier RecyclerView
 class SubastasAdapter(
     private val subastas: List<Subasta>,
     private val onItemClick: (Subasta) -> Unit
 ) : RecyclerView.Adapter<SubastasAdapter.SubastaViewHolder>() {
 
-    // --- ViewHolder (controla cada item individual) ---
     class SubastaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imagen: ImageView = itemView.findViewById(R.id.imageViewProducto)
         val titulo: TextView = itemView.findViewById(R.id.textViewTituloProducto)
@@ -38,8 +35,6 @@ class SubastasAdapter(
         holder.puja.text = String.format("$%,.2f MXN", subasta.pujaActual)
         holder.tiempo.text = subasta.tiempoRestante
 
-        // (Aquí usarías una librería como Glide o Picasso para cargar la imagen desde la URL)
-        // Glide.with(holder.imagen.context).load(subasta.imageUrl).into(holder.imagen)
 
         // Configurar el clic en el botón "VER SUBASTA" o en toda la tarjeta
         holder.botonVer.setOnClickListener {
