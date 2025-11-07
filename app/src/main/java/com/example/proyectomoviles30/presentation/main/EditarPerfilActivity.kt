@@ -19,7 +19,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         PreferenceHelper.defaultPrefs(this)
     }
 
-    // --- Campos del formulario ---
+    // campos del formulario
     private lateinit var editTextNombre: TextInputEditText
     private lateinit var editTextTelefono: TextInputEditText
     private lateinit var editTextSexo: TextInputEditText
@@ -37,7 +37,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             insets
         }
 
-        // --- Encontrar Vistas ---
+        // Encuentra vistas
         editTextNombre = findViewById(R.id.editTextNombre)
         editTextTelefono = findViewById(R.id.editTextTelefono)
         editTextSexo = findViewById(R.id.editTextSexo)
@@ -45,47 +45,47 @@ class EditarPerfilActivity : AppCompatActivity() {
         val buttonGuardar: Button = findViewById(R.id.buttonGuardarCambios)
         val textViewCancelar: TextView = findViewById(R.id.textViewCancelar)
 
-        // --- Recibir datos de PerfilActivity y ponerlos en los campos ---
+        // recibe datos de PerfilActivity y los pone en los campos
         currentUserEmail = intent.getStringExtra("USER_EMAIL")
         editTextNombre.setText(intent.getStringExtra("USER_NAME"))
         editTextTelefono.setText(intent.getStringExtra("USER_TELEFONO"))
         editTextSexo.setText(intent.getStringExtra("USER_SEXO"))
         editTextEdad.setText(intent.getStringExtra("USER_EDAD"))
 
-        // --- Configurar Listeners ---
+        // Listeners
         buttonGuardar.setOnClickListener {
             guardarCambios()
         }
 
         textViewCancelar.setOnClickListener {
-            finish() // Simplemente cierra la actividad
+            finish() // solo cierra la actividad
         }
     }
 
     private fun guardarCambios() {
-        // 1. Obtener los nuevos valores de los EditText
+        // Obtenemos los nuevos valores de los EditText
         val newName = editTextNombre.text.toString()
         val newTelefono = editTextTelefono.text.toString()
         val newSexo = editTextSexo.text.toString()
         val newEdad = editTextEdad.text.toString()
 
-        // Validar que el email no sea nulo (aunque no debería serlo)
+        // verificar que el campo no este vacio pero aun no validamos que el formato del correo sea el correcto
         if (currentUserEmail == null) {
             Toast.makeText(this, "Error: No se pudo identificar al usuario", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // 2. Guardar los nuevos valores en SharedPreferences
+        // Se guarda los nuevos valores en SharedPreferences
         // Usamos la extensión 'set' de PreferenceHelper
         preferences["${currentUserEmail}_name"] = newName
         preferences["${currentUserEmail}_telefono"] = newTelefono
         preferences["${currentUserEmail}_sexo"] = newSexo
         preferences["${currentUserEmail}_edad"] = newEdad
 
-        // (Nota: MiembroDesde no se edita, así que no se toca)
+        // Miembros desde no se modifica
 
-        // 3. Informar al usuario y cerrar la pantalla
+        // informa al usuario y cierra la pantalla
         Toast.makeText(this, "Perfil actualizado", Toast.LENGTH_SHORT).show()
-        finish() // Cierra esta actividad y vuelve a Perfil.kt
+        finish() // Cierra esta actividad y vuelve a perfil.kt
     }
 }

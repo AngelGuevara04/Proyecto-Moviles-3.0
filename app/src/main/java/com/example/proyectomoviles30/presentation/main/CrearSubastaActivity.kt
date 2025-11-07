@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 class CrearSubastaActivity : AppCompatActivity() {
 
-    // --- Campos del formulario ---
+    // Campos del formulario
     private lateinit var editTextTitulo: TextInputEditText
     private lateinit var editTextPujaInicial: TextInputEditText
     private lateinit var editTextTiempo: TextInputEditText
@@ -31,7 +31,7 @@ class CrearSubastaActivity : AppCompatActivity() {
             insets
         }
 
-        // --- Encontrar Vistas ---
+        // Encontrar Vistas
         editTextTitulo = findViewById(R.id.editTextTitulo)
         editTextPujaInicial = findViewById(R.id.editTextPujaInicial)
         editTextTiempo = findViewById(R.id.editTextTiempo)
@@ -39,7 +39,7 @@ class CrearSubastaActivity : AppCompatActivity() {
         buttonPublicar = findViewById(R.id.buttonPublicarSubasta)
         textViewCancelar = findViewById(R.id.textViewCancelar)
 
-        // --- Configurar Listeners ---
+        //  Listeners
         buttonPublicar.setOnClickListener {
             publicarSubasta()
         }
@@ -49,7 +49,7 @@ class CrearSubastaActivity : AppCompatActivity() {
         }
 
         buttonSubirImagen.setOnClickListener {
-            // Lógica futura para subir imagen
+            // idea de como subir una imagen en proceso yisus checa esto porfavor :)
             Toast.makeText(this, "Función 'Subir Imagen' no implementada", Toast.LENGTH_SHORT).show()
         }
     }
@@ -59,19 +59,17 @@ class CrearSubastaActivity : AppCompatActivity() {
         val puja = editTextPujaInicial.text.toString()
         val tiempo = editTextTiempo.text.toString()
 
-        // Validación simple
+        // Validacion
         if (titulo.isBlank() || puja.isBlank() || tiempo.isBlank()) {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // --- Simulación de guardado ---
-        // En un futuro, aquí es donde guardarías los datos en Firebase
-        // y NO en SharedPreferences, porque es una lista que crece.
+        // Manera de guarda en una base de datos con
 
-        Toast.makeText(this, "Subasta '$titulo' publicada (simulación)", Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, "Subasta '$titulo' publicada (simulación)", Toast.LENGTH_LONG).show()
 
-        // Cierra esta actividad y vuelve a la pantalla de Subastas
+        // Cierra esta actividad y vuelve a la pantalla de subastas
         finish()
     }
 }

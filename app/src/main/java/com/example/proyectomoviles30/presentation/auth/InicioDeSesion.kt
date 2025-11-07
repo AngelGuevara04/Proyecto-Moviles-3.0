@@ -1,4 +1,4 @@
-package com.example.proyectomoviles30.presentation.auth // <-- CAMBIO
+package com.example.proyectomoviles30.presentation.auth
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -70,25 +70,22 @@ class InicioDeSesion : AppCompatActivity() {
             return
         }
 
-        // Lógica de "procesamiento"
-        // 1. Buscar la contraseña guardada para ese email
+
+        // Busca las contraseñas guardadas para ese email
         val savedPass = preferences["${email}_pass", ""]
 
-        // 2. Comparar (Usando .toString() para más seguridad)
+        // Comparamos
         if (savedPass.toString() == password && password.isNotEmpty()) {
-            // Login exitoso
             createSessionPreference()
             preferences["current_user_email"] = email
 
             irMenuInicio(false)
         } else {
-            // Login fallido
             Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun irMenuInicio(isSessionActive: Boolean) {
-        // 'MenuInicio' está en otro paquete, SÍ necesita el import
         val intent = Intent(this, MenuInicio::class.java)
         startActivity(intent)
         if (!isSessionActive) {

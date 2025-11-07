@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectomoviles30.R
 
-// --- La Data Class 'Subasta' se eliminó de aquí ---
-// (Ahora se importa desde 'Subasta.kt')
 
 class Buscar : AppCompatActivity() {
 
@@ -24,10 +22,8 @@ class Buscar : AppCompatActivity() {
     private lateinit var recyclerViewResultados: RecyclerView
     private lateinit var textViewNoResultados: TextView
     private lateinit var subastasAdapter: SubastasAdapter
-
-    // Esta lista contendrá los resultados filtrados
     private var listaMostrada = mutableListOf<Subasta>()
-    // Esta lista simula tu base de datos completa
+    // con esta lista simulamos una base de datos
     private var listaCompletaDeSubastas = mutableListOf<Subasta>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,29 +36,28 @@ class Buscar : AppCompatActivity() {
             insets
         }
 
-        // --- Configuración del Botón Volver ---
+        //configuración del botón volver
         val textViewIrMenuInicio = findViewById<TextView>(R.id.textViewIrMenuInicio)
         textViewIrMenuInicio.setOnClickListener {
             irMenuInicio()
         }
 
-        // --- Inicializar Vistas ---
+        //inicializar vistas
         editTextBusqueda = findViewById(R.id.editTextBusqueda)
         recyclerViewResultados = findViewById(R.id.recyclerViewResultados)
         textViewNoResultados = findViewById(R.id.textViewNoResultados)
 
-        // --- Configurar Lógica de Búsqueda ---
         cargarDatosCompletosDeEjemplo()
         setupRecyclerView()
         setupSearchListener()
     }
 
     private fun setupRecyclerView() {
-        // Inicializa el adaptador con la lista (inicialmente vacía)
-        // 'SubastasAdapter' y 'Subasta' ahora se importan automáticamente
+        // Adaptador con la lista (inicialmente vacía)
         subastasAdapter = SubastasAdapter(listaMostrada) { subastaClickeada ->
-            // --- Manejar clic en un item de la lista ---
             Toast.makeText(this, "Viendo subasta de: ${subastaClickeada.titulo}", Toast.LENGTH_SHORT).show()
+
+
             // val intent = Intent(this, DetalleSubastaActivity::class.java)
             // intent.putExtra("SUBASTA_ID", subastaClickeada.id)
             // startActivity(intent)
@@ -84,21 +79,20 @@ class Buscar : AppCompatActivity() {
     }
 
     private fun filtrarLista(query: String) {
-        // 1. Limpiar la lista actual
+        // limpia la lista actual
         listaMostrada.clear()
 
         if (query.isBlank()) {
-            // Si la búsqueda está vacía, ocultar todo
+            // si la búsqueda está vacía entonces ocultamos todo
             recyclerViewResultados.visibility = View.GONE
             textViewNoResultados.visibility = View.GONE
         } else {
-            // Si hay texto, filtrar la lista completa
             val resultados = listaCompletaDeSubastas.filter {
                 it.titulo.contains(query, ignoreCase = true)
             }
             listaMostrada.addAll(resultados)
 
-            // 3. Mostrar/Ocultar vistas según los resultados
+            // mostramos y ocultamos las vistas según los resultados relacionados
             if (listaMostrada.isEmpty()) {
                 recyclerViewResultados.visibility = View.GONE
                 textViewNoResultados.visibility = View.VISIBLE
@@ -108,7 +102,7 @@ class Buscar : AppCompatActivity() {
             }
         }
 
-        // 4. Notificar al adaptador que los datos cambiaron
+        // Se notifica al adaptador que los datos cambiaron
         subastasAdapter.notifyDataSetChanged()
     }
 

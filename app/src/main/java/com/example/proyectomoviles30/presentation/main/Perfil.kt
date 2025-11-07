@@ -19,7 +19,7 @@ class Perfil : AppCompatActivity() {
         PreferenceHelper.defaultPrefs(this)
     }
 
-    // --- Variables para guardar los datos cargados ---
+    // Variables para guardar los datos cargados
     private var currentUserEmail: String = ""
     private var currentUserName: String = ""
     private var currentUserTelefono: String = ""
@@ -37,13 +37,13 @@ class Perfil : AppCompatActivity() {
             insets
         }
 
-        // Configurar listener para volver
+        // listener para volver
         val textViewIrMenuInicio = findViewById<TextView>(R.id.textViewIrMenuInicio)
         textViewIrMenuInicio.setOnClickListener {
             irMenuInicio()
         }
 
-        // Configurar listeners para el botón de editar
+        // listeners para el botón de editar
         val btnEditarPerfil = findViewById<Button>(R.id.buttonEditarPerfil)
         btnEditarPerfil.setOnClickListener {
             irAEditarPerfil()
@@ -52,16 +52,16 @@ class Perfil : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Cargar y mostrar los datos del perfil CADA VEZ que la pantalla se muestra
+        // Cargar y mostrar los datos del perfil cada vez que la pantalla se muestra
         cargarDatosPerfil()
     }
 
     private fun cargarDatosPerfil() {
-        // Obtener email y nombre
+        // obtener email y nombre
         currentUserEmail = preferences["current_user_email", ""]
         currentUserName = preferences["${currentUserEmail}_name", "Usuario"]
 
-        // Cargar los datos adicionales
+        // cargar los demas datos
         currentUserTelefono = preferences["${currentUserEmail}_telefono", "No especificado"]
         currentUserSexo = preferences["${currentUserEmail}_sexo", "No especificado"]
         currentUserEdad = preferences["${currentUserEmail}_edad", "No especificado"]
@@ -88,7 +88,7 @@ class Perfil : AppCompatActivity() {
 
     private fun irAEditarPerfil() {
         val intent = Intent(this, EditarPerfilActivity::class.java)
-        // --- Enviamos TODOS los datos actuales a la nueva Activity ---
+        // enviamos todos los datos actuales a la nueva Activity
         intent.putExtra("USER_EMAIL", currentUserEmail)
         intent.putExtra("USER_NAME", currentUserName)
         intent.putExtra("USER_TELEFONO", currentUserTelefono)
@@ -98,6 +98,6 @@ class Perfil : AppCompatActivity() {
     }
 
     private fun irMenuInicio() {
-        finish() // Cierra esta actividad y vuelve a la anterior
+        finish() // Cerramos esta actividad y vuelve a la anterior
     }
 }

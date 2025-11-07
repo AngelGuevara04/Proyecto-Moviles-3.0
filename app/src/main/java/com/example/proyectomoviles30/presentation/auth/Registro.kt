@@ -56,32 +56,28 @@ class Registro : AppCompatActivity() {
         val password = etPassword.text.toString()
         val repeatPassword = etRepeatPassword.text.toString()
 
-        // 1. Validar que los campos no estén vacíos
+        // Validamos que los campos no estén vacíos
         if (nombre.isEmpty() || email.isEmpty() || password.isEmpty() || repeatPassword.isEmpty()) {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // 2. Validar que las contraseñas coincidan
+        // Checamos que si las contraseñas coinciden
         if (password != repeatPassword) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // --- ¡LÓGICA CORREGIDA! ---
-        // 3. Validar que el email no exista
-        // Simplemente revisamos si ya hay una contraseña guardada para ese email.
+        // verificamos email y sus contraseñas
         val existingPass = preferences["${email}_pass", ""]
 
-        // Usamos .toString() porque el helper puede devolver Any?
         if (existingPass.toString().isNotEmpty()) {
             // Si la contraseña NO está vacía, significa que el usuario ya existe
             Toast.makeText(this, "El correo electrónico ya está registrado", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // 4. Guardar usuario (Persistencia)
-        // Si llegamos aquí, el email es nuevo y podemos guardarlo.
+        // Guardarmos usuarios utilizando persistencia
         preferences["${email}_name"] = nombre
         preferences["${email}_pass"] = password
 
@@ -90,7 +86,6 @@ class Registro : AppCompatActivity() {
     }
 
     private fun irInicioDeSesion() {
-        // 'InicioDeSesion' está en el mismo paquete, no necesita import
         val intent = Intent(this, InicioDeSesion::class.java)
         startActivity(intent)
     }
