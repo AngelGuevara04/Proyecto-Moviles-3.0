@@ -6,13 +6,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.MenuInicio">
+    android:background="#F4F7F6"
+    tools:context=".presentation.main.Buscar"> <!-- Contexto corregido -->
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,46 +25,75 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="60dp"
             android:text="Buscar"
-            android:textSize="60sp" />
+            android:textSize="60sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
 
+        <!-- Le he añadido un ID para poder controlarlo desde Kotlin -->
         <EditText
+            android:id="@+id/editTextBusqueda"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
             android:hint="Busqueda de subastas"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:textSize="15sp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:paddingHorizontal="12dp"
             android:drawableRight="@drawable/busqueda_buscar"/>
+        <!-- Nota: Asumo que tienes el drawable 'busqueda_buscar' en tu proyecto -->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="90dp"
-            android:text="Proximamente..."
-            android:textSize="53sp" />
     </LinearLayout>
 
+    <!-- RecyclerView para mostrar los resultados -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewResultados"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingHorizontal="16dp"
+        android:clipToPadding="false"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutHeader"
+        app:layout_constraintBottom_toTopOf="@id/linearLayoutFooter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_subasta" />
+
+    <!-- Texto para cuando no hay resultados -->
+    <TextView
+        android:id="@+id/textViewNoResultados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No se encontraron resultados"
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/recyclerViewResultados"
+        app:layout_constraintBottom_toBottomOf="@id/recyclerViewResultados"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        />
+
+    <!-- Tu LinearLayout original para el botón "Volver" -->
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayoutFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textViewIrMenuInicio"
             style="@style/TextViewCambio"
-            android:text="Volver al menú" />
+            android:text="Volver al menú"
+            android:textColor="#007BFF"/>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

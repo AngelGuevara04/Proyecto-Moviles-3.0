@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.ProyectoMoviles30" parent="Theme.AppCompat.Light.NoActionBar" />
+    <!--
+      CAMBIO CLAVE: El 'parent' se cambió de 'Theme.AppCompat.Light.NoActionBar'
+      a 'Theme.MaterialComponents.DayNight.NoActionBar' para solucionar el crash.
+    -->
+    <style name="Theme.ProyectoMoviles30" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!--
+            Aquí puedes personalizar colores primarios, etc.
+            <item name="colorPrimary">@color/my_light_primary</item>
+        -->
+    </style>
+
+    <!-- Tus estilos personalizados se conservan intactos -->
     <style name="MenuButtom" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="android:layout_height">70dp</item>
         <item name="android:layout_marginLeft">25dp</item>
@@ -10,6 +21,7 @@
         <item name="android:paddingRight">60dp</item>
         <item name="android:layout_marginTop">20dp</item>
     </style>
+
     <style name = "TextViewCambio" parent="@style/Widget.AppCompat.TextView">
         <item name="android:layout_width">240dp</item>
         <item name="android:layout_height">37dp</item>
