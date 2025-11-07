@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Button
 import android.widget.Toast
 import android.content.Intent
-
 import com.example.proyectomoviles30.R
 import com.example.proyectomoviles30.util.PreferenceHelper
 import com.example.proyectomoviles30.util.PreferenceHelper.get
@@ -20,10 +19,17 @@ class Perfil : AppCompatActivity() {
         PreferenceHelper.defaultPrefs(this)
     }
 
+    // --- Variables para guardar los datos cargados ---
+    private var currentUserEmail: String = ""
+    private var currentUserName: String = ""
+    private var currentUserTelefono: String = ""
+    private var currentUserSexo: String = ""
+    private var currentUserEdad: String = ""
+    private var currentUserMiembroDesde: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        // Asegúrate de que el layout se llama 'activity_perfil'
         setContentView(R.layout.activity_perfil)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -37,36 +43,29 @@ class Perfil : AppCompatActivity() {
             irMenuInicio()
         }
 
-        // Cargar y mostrar los datos del perfil
-        cargarDatosPerfil()
-
-        // Configurar listeners para los nuevos botones
+        // Configurar listeners para el botón de editar
         val btnEditarPerfil = findViewById<Button>(R.id.buttonEditarPerfil)
         btnEditarPerfil.setOnClickListener {
-            // Aquí puedes iniciar una nueva Activity para editar el perfil
-            Toast.makeText(this, "Ir a editar perfil...", Toast.LENGTH_SHORT).show()
+            irAEditarPerfil()
         }
+    }
 
-        /*
-        // ELIMINADO PORQUE NO EXISTE EN EL XML
-        val tvCerrarSesion = findViewById<TextView>(R.id.textViewCerrarSesion)
-        tvCerrarSesion.setOnClickListener {
-            // Aquí puedes poner la lógica para cerrar sesión
-            Toast.makeText(this, "Cerrando sesión...", Toast.LENGTH_SHORT).show()
-        }
-        */
+    override fun onResume() {
+        super.onResume()
+        // Cargar y mostrar los datos del perfil CADA VEZ que la pantalla se muestra
+        cargarDatosPerfil()
     }
 
     private fun cargarDatosPerfil() {
-        // Obtener email y nombre (como ya lo tenías)
-        val currentUserEmail = preferences["current_user_email", ""]
-        val currentUserName = preferences["${currentUserEmail}_name", "Usuario"]
+        // Obtener email y nombre
+        currentUserEmail = preferences["current_user_email", ""]
+        currentUserName = preferences["${currentUserEmail}_name", "Usuario"]
 
-        // *** Cargar los datos adicionales (asumiendo claves de SharedPreferences) ***
-        val currentUserTelefono = preferences["${currentUserEmail}_telefono", "No especificado"]
-        val currentUserSexo = preferences["${currentUserEmail}_sexo", "No especificado"]
-        val currentUserEdad = preferences["${currentUserEmail}_edad", "No especificado"]
-        val currentUserMiembroDesde = preferences["${currentUserEmail}_miembro_desde", "Ene 2024"]
+        // Cargar los datos adicionales
+        currentUserTelefono = preferences["${currentUserEmail}_telefono", "No especificado"]
+        currentUserSexo = preferences["${currentUserEmail}_sexo", "No especificado"]
+        currentUserEdad = preferences["${currentUserEmail}_edad", "No especificado"]
+        currentUserMiembroDesde = preferences["${currentUserEmail}_miembro_desde", "Ene 2024"]
 
         // Buscar todos los TextView del layout
         val tvBienvenido = findViewById<TextView>(R.id.textViewBienvenido)
@@ -78,13 +77,24 @@ class Perfil : AppCompatActivity() {
         val tvMiembroDesde = findViewById<TextView>(R.id.textViewMiembroDesde)
 
         // Asignar los datos a los TextView
-        tvBienvenido.text = "Bienvenido, $currentUserName"
+        tvBienvenido.text = "¡Bienvenido, $currentUserName!"
         tvNombreCompleto.text = currentUserName
         tvEmail.text = currentUserEmail
         tvTelefono.text = currentUserTelefono
         tvSexo.text = currentUserSexo
         tvEdad.text = currentUserEdad
         tvMiembroDesde.text = currentUserMiembroDesde
+    }
+
+    private fun irAEditarPerfil() {
+        val intent = Intent(this, EditarPerfilActivity::class.java)
+        // --- Enviamos TODOS los datos actuales a la nueva Activity ---
+        intent.putExtra("USER_EMAIL", currentUserEmail)
+        intent.putExtra("USER_NAME", currentUserName)
+        intent.putExtra("USER_TELEFONO", currentUserTelefono)
+        intent.putExtra("USER_SEXO", currentUserSexo)
+        intent.putExtra("USER_EDAD", currentUserEdad)
+        startActivity(intent)
     }
 
     private fun irMenuInicio() {

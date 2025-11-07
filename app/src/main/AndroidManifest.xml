@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ProyectoMoviles30">
 
         <activity
+            android:name=".presentation.main.EditarPerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.main.Subastas"
             android:exported="false" />
         <activity
