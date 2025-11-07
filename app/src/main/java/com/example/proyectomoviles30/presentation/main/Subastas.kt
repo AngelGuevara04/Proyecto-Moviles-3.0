@@ -1,5 +1,6 @@
 package com.example.proyectomoviles30.presentation.main
 
+import android.content.Intent // <-- IMPORTACIÓN AÑADIDA
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
@@ -44,8 +45,11 @@ class Subastas : AppCompatActivity() {
         // --- Configuración del Floating Action Button (FAB) ---
         val fabCrear = findViewById<FloatingActionButton>(R.id.fabCrearSubasta)
         fabCrear.setOnClickListener {
-            // Aquí iniciarías la Activity para crear una nueva subasta
-            Toast.makeText(this, "Iniciando creación de subasta...", Toast.LENGTH_SHORT).show()
+            // --- CÓDIGO MODIFICADO ---
+            // Se reemplaza el Toast por un Intent para abrir la nueva Activity
+            val intent = Intent(this, CrearSubastaActivity::class.java)
+            startActivity(intent)
+            // --- FIN DEL CÓDIGO MODIFICADO ---
         }
     }
 
