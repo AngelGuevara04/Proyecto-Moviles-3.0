@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registro">
+    tools:context=".presentation.auth.Registro">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -33,45 +33,72 @@
             android:text="Completa el formulario"
             android:textSize="20sp" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
-            android:hint="Nombre completo"
-            android:inputType="textEmailAddress"
-            android:textSize="15sp"/>
+            android:hint="Nombre completo">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textSize="15sp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
-            android:hint="Correo electrónico"
-            android:inputType="textEmailAddress"
-            android:textSize="15sp" />
+            android:hint="Correo electrónico">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
             android:hint="Contraseña"
+            app:passwordToggleEnabled="true"> <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:textSize="15sp" />
 
-        <EditText
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
             android:hint="Repetir contraseña"
+            app:passwordToggleEnabled="true"> <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextRepeatPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -94,7 +121,7 @@
             android:id="@+id/textViewIrInicioDeSesion"
             style="@style/TextViewCambio"
             android:text="¿Ya tienes cuenta? Inicia sesión"
-             />
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

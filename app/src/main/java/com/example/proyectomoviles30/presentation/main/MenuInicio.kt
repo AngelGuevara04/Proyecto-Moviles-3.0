@@ -1,4 +1,4 @@
-package com.example.proyectomoviles30
+package com.example.proyectomoviles30.presentation.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -8,8 +8,11 @@ import androidx.core.view.WindowInsetsCompat
 import android.widget.TextView
 import android.content.Intent
 import android.widget.Button
+
+import com.example.proyectomoviles30.R
 import com.example.proyectomoviles30.util.PreferenceHelper
 import com.example.proyectomoviles30.util.PreferenceHelper.set
+import com.example.proyectomoviles30.presentation.auth.InicioDeSesion
 
 
 class MenuInicio : AppCompatActivity() {
@@ -47,12 +50,14 @@ class MenuInicio : AppCompatActivity() {
 
     private fun irInicioDeSesion() {
         val intent = Intent(this, InicioDeSesion::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
 
     private fun clearSessionPreference() {
         val preferences = PreferenceHelper.defaultPrefs(this)
         preferences["session"] = false
+        preferences["current_user_email"] = ""
     }
 
     private fun irPerfil() {
