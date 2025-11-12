@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="#F4F7F6"
-    tools:context=".presentation.main.MenuInicio"> <!-- Contexto original conservado -->
+    tools:context=".presentation.main.MenuInicio">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-        <!-- Encabezado con el nuevo estilo -->
         <TextView
             android:id="@+id/textViewTituloMenu"
             android:layout_width="wrap_content"
@@ -39,7 +38,6 @@
             app:layout_constraintTop_toBottomOf="@id/textViewTituloMenu"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Botones (convertidos a MaterialButton) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonIrPerfil"
             android:layout_width="0dp"
@@ -76,7 +74,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- TextView "Cerrar Sesión" con el estilo de "Perfil" -->
         <TextView
             android:id="@+id/textViewCerrarSesion"
             android:layout_width="wrap_content"

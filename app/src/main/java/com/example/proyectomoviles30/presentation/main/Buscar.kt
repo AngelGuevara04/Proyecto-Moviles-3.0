@@ -36,13 +36,11 @@ class Buscar : AppCompatActivity() {
             insets
         }
 
-        //configuración del botón volver
         val textViewIrMenuInicio = findViewById<TextView>(R.id.textViewIrMenuInicio)
         textViewIrMenuInicio.setOnClickListener {
             irMenuInicio()
         }
 
-        //inicializar vistas
         editTextBusqueda = findViewById(R.id.editTextBusqueda)
         recyclerViewResultados = findViewById(R.id.recyclerViewResultados)
         textViewNoResultados = findViewById(R.id.textViewNoResultados)
@@ -56,7 +54,6 @@ class Buscar : AppCompatActivity() {
         // Adaptador con la lista (inicialmente vacía)
         subastasAdapter = SubastasAdapter(listaMostrada) { subastaClickeada ->
             Toast.makeText(this, "Viendo subasta de: ${subastaClickeada.titulo}", Toast.LENGTH_SHORT).show()
-
 
             // val intent = Intent(this, DetalleSubastaActivity::class.java)
             // intent.putExtra("SUBASTA_ID", subastaClickeada.id)
@@ -107,7 +104,6 @@ class Buscar : AppCompatActivity() {
     }
 
     private fun cargarDatosCompletosDeEjemplo() {
-        // Esta es tu "base de datos" simulada
         listaCompletaDeSubastas.add(Subasta("1", "Guitarra Eléctrica Fender", 8500.0, "2h 15m", ""))
         listaCompletaDeSubastas.add(Subasta("2", "Cuadro Abstracto Moderno", 4200.0, "1d 5h", ""))
         listaCompletaDeSubastas.add(Subasta("3", "Laptop Gamer Alienware", 22000.0, "0h 30m", ""))

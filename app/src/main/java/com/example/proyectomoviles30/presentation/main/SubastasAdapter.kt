@@ -31,12 +31,10 @@ class SubastasAdapter(
         val subasta = subastas[position]
 
         holder.titulo.text = subasta.titulo
-        // Formatear el dinero
         holder.puja.text = String.format("$%,.2f MXN", subasta.pujaActual)
         holder.tiempo.text = subasta.tiempoRestante
 
 
-        // Configurar el clic en el botón "VER SUBASTA" o en toda la tarjeta
         holder.botonVer.setOnClickListener {
             onItemClick(subasta)
         }

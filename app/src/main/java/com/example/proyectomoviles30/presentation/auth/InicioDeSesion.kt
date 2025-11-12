@@ -52,12 +52,10 @@ class InicioDeSesion : AppCompatActivity() {
         }
     }
     private fun irRegistro() {
-        // 'Registro' está en el mismo paquete, no necesita import
         val intent = Intent(this, Registro::class.java)
         startActivity(intent)
     }
 
-    // --- FUNCIÓN ACTUALIZADA ---
     private fun performLogin() {
         val etEmail = findViewById<EditText>(R.id.editTextEmail)
         val etPassword = findViewById<EditText>(R.id.editTextPassword)

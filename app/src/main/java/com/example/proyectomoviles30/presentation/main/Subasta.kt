@@ -5,5 +5,5 @@ data class Subasta(
     val titulo: String,
     val pujaActual: Double,
     val tiempoRestante: String,
-    val imageUrl: String // en el caso de que se agregara
+    val imageUrl: String
 )

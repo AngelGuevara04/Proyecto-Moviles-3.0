@@ -39,13 +39,12 @@ class CrearSubastaActivity : AppCompatActivity() {
         buttonPublicar = findViewById(R.id.buttonPublicarSubasta)
         textViewCancelar = findViewById(R.id.textViewCancelar)
 
-        //  Listeners
         buttonPublicar.setOnClickListener {
             publicarSubasta()
         }
 
         textViewCancelar.setOnClickListener {
-            finish() // Cierra la actividad
+            finish()
         }
 
         buttonSubirImagen.setOnClickListener {
@@ -65,11 +64,9 @@ class CrearSubastaActivity : AppCompatActivity() {
             return
         }
 
-        // Manera de guarda en una base de datos con
-
+        // Manera de guardar en una base de datos con
         //Toast.makeText(this, "Subasta '$titulo' publicada (simulación)", Toast.LENGTH_LONG).show()
 
-        // Cierra esta actividad y vuelve a la pantalla de subastas
         finish()
     }
 }

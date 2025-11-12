@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-        <!-- Encabezado con el nuevo estilo -->
         <TextView
             android:id="@+id/textViewTituloRegistro"
             android:layout_width="wrap_content"
@@ -39,7 +38,6 @@
             app:layout_constraintTop_toBottomOf="@id/textViewTituloRegistro"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Campos de Texto (Tus TextInputLayouts originales) -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutNombre"
             android:layout_width="0dp"
@@ -114,7 +112,6 @@
                 android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Botón (convertido a MaterialButton) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonIrInicioDeSesion"
             android:layout_width="0dp"
@@ -127,7 +124,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- TextView "Iniciar Sesión" -->
         <TextView
             android:id="@+id/textViewIrInicioDeSesion"
             android:layout_width="wrap_content"

@@ -37,13 +37,11 @@ class Perfil : AppCompatActivity() {
             insets
         }
 
-        // listener para volver
         val textViewIrMenuInicio = findViewById<TextView>(R.id.textViewIrMenuInicio)
         textViewIrMenuInicio.setOnClickListener {
             irMenuInicio()
         }
 
-        // listeners para el botón de editar
         val btnEditarPerfil = findViewById<Button>(R.id.buttonEditarPerfil)
         btnEditarPerfil.setOnClickListener {
             irAEditarPerfil()
@@ -52,7 +50,6 @@ class Perfil : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Cargar y mostrar los datos del perfil cada vez que la pantalla se muestra
         cargarDatosPerfil()
     }
 
@@ -67,7 +64,6 @@ class Perfil : AppCompatActivity() {
         currentUserEdad = preferences["${currentUserEmail}_edad", "No especificado"]
         currentUserMiembroDesde = preferences["${currentUserEmail}_miembro_desde", "Ene 2024"]
 
-        // Buscar todos los TextView del layout
         val tvBienvenido = findViewById<TextView>(R.id.textViewBienvenido)
         val tvNombreCompleto = findViewById<TextView>(R.id.textViewNombreCompleto)
         val tvEmail = findViewById<TextView>(R.id.textViewEmail)
@@ -98,6 +94,6 @@ class Perfil : AppCompatActivity() {
     }
 
     private fun irMenuInicio() {
-        finish() // Cerramos esta actividad y vuelve a la anterior
+        finish()
     }
 }

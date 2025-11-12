@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4F7F6"
-    tools:context=".presentation.main.Buscar"> <!-- Contexto corregido -->
+    tools:context=".presentation.main.Buscar">
 
     <LinearLayout
         android:id="@+id/linearLayoutHeader"
@@ -29,7 +29,6 @@
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
 
-        <!-- Le he añadido un ID para poder controlarlo desde Kotlin -->
         <EditText
             android:id="@+id/editTextBusqueda"
             android:layout_width="match_parent"
@@ -43,7 +42,6 @@
             android:background="@android:drawable/editbox_background_normal"
             android:paddingHorizontal="12dp"
             android:drawableRight="@drawable/busqueda_buscar"/>
-        <!-- Nota: Asumo que tienes el drawable 'busqueda_buscar' en tu proyecto -->
 
     </LinearLayout>
 
@@ -77,7 +75,7 @@
         app:layout_constraintVertical_bias="0.4"
         />
 
-    <!-- Tu LinearLayout original para el botón "Volver" -->
+    <!-- LinearLayout para el botón "Volver" -->
     <LinearLayout
         android:id="@+id/linearLayoutFooter"
         android:layout_width="match_parent"

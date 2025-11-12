@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-        <!-- Encabezado -->
         <TextView
             android:id="@+id/textViewTituloCrear"
             android:layout_width="wrap_content"
@@ -39,7 +38,7 @@
             app:layout_constraintTop_toBottomOf="@id/textViewTituloCrear"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Botón Falso para subir imagen -->
+        <!-- Botón para subir imagen -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSubirImagen"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -115,7 +114,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <!-- Botón Publicar -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonPublicarSubasta"
             android:layout_width="0dp"
@@ -128,7 +126,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- TextView "Cancelar" -->
         <TextView
             android:id="@+id/textViewCancelar"
             android:layout_width="wrap_content"

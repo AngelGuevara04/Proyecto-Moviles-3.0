@@ -19,7 +19,6 @@ class EditarPerfilActivity : AppCompatActivity() {
         PreferenceHelper.defaultPrefs(this)
     }
 
-    // campos del formulario
     private lateinit var editTextNombre: TextInputEditText
     private lateinit var editTextTelefono: TextInputEditText
     private lateinit var editTextSexo: TextInputEditText
@@ -37,7 +36,6 @@ class EditarPerfilActivity : AppCompatActivity() {
             insets
         }
 
-        // Encuentra vistas
         editTextNombre = findViewById(R.id.editTextNombre)
         editTextTelefono = findViewById(R.id.editTextTelefono)
         editTextSexo = findViewById(R.id.editTextSexo)
@@ -45,20 +43,18 @@ class EditarPerfilActivity : AppCompatActivity() {
         val buttonGuardar: Button = findViewById(R.id.buttonGuardarCambios)
         val textViewCancelar: TextView = findViewById(R.id.textViewCancelar)
 
-        // recibe datos de PerfilActivity y los pone en los campos
         currentUserEmail = intent.getStringExtra("USER_EMAIL")
         editTextNombre.setText(intent.getStringExtra("USER_NAME"))
         editTextTelefono.setText(intent.getStringExtra("USER_TELEFONO"))
         editTextSexo.setText(intent.getStringExtra("USER_SEXO"))
         editTextEdad.setText(intent.getStringExtra("USER_EDAD"))
 
-        // Listeners
         buttonGuardar.setOnClickListener {
             guardarCambios()
         }
 
         textViewCancelar.setOnClickListener {
-            finish() // solo cierra la actividad
+            finish()
         }
     }
 
@@ -69,7 +65,6 @@ class EditarPerfilActivity : AppCompatActivity() {
         val newSexo = editTextSexo.text.toString()
         val newEdad = editTextEdad.text.toString()
 
-        // verificar que el campo no este vacio pero aun no validamos que el formato del correo sea el correcto
         if (currentUserEmail == null) {
             Toast.makeText(this, "Error: No se pudo identificar al usuario", Toast.LENGTH_SHORT).show()
             return
@@ -82,10 +77,8 @@ class EditarPerfilActivity : AppCompatActivity() {
         preferences["${currentUserEmail}_sexo"] = newSexo
         preferences["${currentUserEmail}_edad"] = newEdad
 
-        // Miembros desde no se modifica
-
         // informa al usuario y cierra la pantalla
         Toast.makeText(this, "Perfil actualizado", Toast.LENGTH_SHORT).show()
-        finish() // Cierra esta actividad y vuelve a perfil.kt
+        finish()
     }
 }

@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-        <!-- Encabezado con el nuevo estilo -->
         <TextView
             android:id="@+id/textViewTituloLogin"
             android:layout_width="wrap_content"
@@ -39,7 +38,6 @@
             app:layout_constraintTop_toBottomOf="@id/textViewTituloLogin"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Campos de Texto (Tus TextInputLayouts originales) -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutEmail"
             android:layout_width="0dp"
@@ -77,7 +75,6 @@
                 android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Botones (convertidos a MaterialButton) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonIrMenuInicio"
             android:layout_width="0dp"
@@ -103,7 +100,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- TextView "Regístrate" -->
         <TextView
             android:id="@+id/textViewIrRegistro"
             android:layout_width="wrap_content"

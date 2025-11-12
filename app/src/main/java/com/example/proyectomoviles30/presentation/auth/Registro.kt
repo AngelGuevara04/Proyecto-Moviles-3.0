@@ -44,7 +44,6 @@ class Registro : AppCompatActivity() {
         }
     }
 
-    // --- FUNCIÓN ACTUALIZADA ---
     private fun performRegistro() {
         val etNombre = findViewById<EditText>(R.id.editTextNombre)
         val etEmail = findViewById<EditText>(R.id.editTextEmail)
@@ -62,13 +61,13 @@ class Registro : AppCompatActivity() {
             return
         }
 
-        // Checamos que si las contraseñas coinciden
+        // Checamos si las contraseñas coinciden
         if (password != repeatPassword) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // verificamos email y sus contraseñas
+        // Verificamos email y contraseñas
         val existingPass = preferences["${email}_pass", ""]
 
         if (existingPass.toString().isNotEmpty()) {

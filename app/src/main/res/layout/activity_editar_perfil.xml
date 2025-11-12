@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-        <!-- Encabezado -->
         <TextView
             android:id="@+id/textViewTituloEditar"
             android:layout_width="wrap_content"
@@ -39,7 +38,6 @@
             app:layout_constraintTop_toBottomOf="@id/textViewTituloEditar"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Campos de Texto para editar -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutNombre"
             android:layout_width="0dp"
@@ -112,7 +110,6 @@
                 android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Botón Guardar -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonGuardarCambios"
             android:layout_width="0dp"
@@ -125,7 +122,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- TextView "Cancelar" -->
         <TextView
             android:id="@+id/textViewCancelar"
             android:layout_width="wrap_content"
