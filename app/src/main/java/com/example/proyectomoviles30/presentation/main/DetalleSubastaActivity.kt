@@ -3,7 +3,9 @@ package com.example.proyectomoviles30.presentation.main
 import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -19,6 +21,9 @@ import com.example.proyectomoviles30.R
 import com.example.proyectomoviles30.domain.model.Subasta
 import com.example.proyectomoviles30.presentation.ViewModelFactory
 import com.google.android.material.button.MaterialButton
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.Locale
 
 class DetalleSubastaActivity : AppCompatActivity() {
 
@@ -92,18 +97,16 @@ class DetalleSubastaActivity : AppCompatActivity() {
         val imageView = findViewById<ImageView>(R.id.imageViewProducto)
         if (subasta.imageUrl.isNotEmpty()) {
             try {
-                // Tomamos permiso persistente si es posible (para casos donde se abre directo desde favoritos/recientes y no se tomó al crear)
-                // Aunque lo ideal es tomarlo al crear, esto es un fallback seguro.
+                // Tomamos permiso persistente si es posible
                 val uri = Uri.parse(subasta.imageUrl)
                 try {
                     contentResolver.takePersistableUriPermission(uri, android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 } catch (e: SecurityException) {
-                    // Si no podemos tomar persistencia (ya la tenemos o no se puede), ignoramos y probamos cargar
+                    // Ignoramos si no podemos tomar persistencia
                 }
                 imageView.setImageURI(uri)
             } catch (e: Exception) {
-                // Si falla la carga de la imagen, no crasheamos la app
-                imageView.setImageResource(android.R.drawable.ic_menu_gallery) // Imagen por defecto
+                imageView.setImageResource(android.R.drawable.ic_menu_gallery) 
             }
         }
     }
@@ -129,10 +132,14 @@ class DetalleSubastaActivity : AppCompatActivity() {
 
         val input = EditText(this)
         input.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+        // Agregamos el formateador con comas
+        input.addTextChangedListener(NumberTextWatcher(input))
+        
         builder.setView(input)
 
         builder.setPositiveButton("Pujar") { _, _ ->
-            val montoStr = input.text.toString()
+            // Eliminamos las comas antes de parsear
+            val montoStr = input.text.toString().replace(",", "")
             if (montoStr.isNotEmpty()) {
                 val monto = montoStr.toDoubleOrNull()
                 if (monto != null) {
@@ -147,5 +154,36 @@ class DetalleSubastaActivity : AppCompatActivity() {
         }
 
         builder.show()
+    }
+    
+    // Clase interna para formateo de número con comas
+    class NumberTextWatcher(private val et: EditText) : TextWatcher {
+        private var isUpdating = false
+        private val decimalFormat = DecimalFormat("#,###.##", DecimalFormatSymbols(Locale.US))
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (isUpdating) {
+                isUpdating = false
+                return
+            }
+
+            var str = s.toString().replace(",", "")
+            if (str.isNotEmpty()) {
+                try {
+                    val parsed = str.toDouble()
+                    val formatted = decimalFormat.format(parsed)
+                    
+                    isUpdating = true
+                    et.setText(formatted)
+                    et.setSelection(formatted.length)
+                } catch (e: NumberFormatException) {
+                    // ignore
+                }
+            }
+        }
+
+        override fun afterTextChanged(s: Editable?) {}
     }
 }

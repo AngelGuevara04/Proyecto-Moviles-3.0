@@ -51,8 +51,10 @@ class DetalleSubastaViewModel(
 
     fun realizarPuja(montoOfertado: Double) {
         val subastaActual = _subasta.value
-        if (subastaActual == null) {
-            _pujaState.value = PujaState.Error("No se pudo encontrar la subasta")
+        val username = userRepository.getCurrentUsername()
+        
+        if (subastaActual == null || username == null) {
+            _pujaState.value = PujaState.Error("Error de sesión o subasta no encontrada")
             return
         }
 
@@ -63,8 +65,13 @@ class DetalleSubastaViewModel(
             return
         }
 
+        // 1. Actualizamos el precio
         val exito = subastaRepository.actualizarPuja(subastaActual.id, montoOfertado)
+        
         if (exito) {
+            // 2. Registramos que este usuario participó (Para la pestaña "Mis Pujas")
+            subastaRepository.registrarPuja(subastaActual.id, username, montoOfertado)
+            
             _pujaState.value = PujaState.Success
             // Recargamos los datos para refrescar la vista
             cargarSubasta(subastaActual.id)

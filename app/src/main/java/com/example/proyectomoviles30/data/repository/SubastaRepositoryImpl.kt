@@ -1,5 +1,6 @@
 package com.example.proyectomoviles30.data.repository
 
+import com.example.proyectomoviles30.domain.model.Puja
 import com.example.proyectomoviles30.domain.model.Subasta
 import com.example.proyectomoviles30.domain.repository.SubastaRepository
 
@@ -13,6 +14,8 @@ class SubastaRepositoryImpl : SubastaRepository {
             Subasta("4", "Colección Monedas Antiguas", 1500.0, 20.0, "2024-11-01 09:00", ""),
             Subasta("5", "Bicicleta de Montaña", 6800.0, 150.0, "2024-12-01 10:00", "")
         )
+        // Lista en memoria para guardar quien ha pujado
+        private val historialPujas = mutableListOf<Puja>()
     }
 
     override fun getSubastas(): List<Subasta> {
@@ -36,5 +39,19 @@ class SubastaRepositoryImpl : SubastaRepository {
             return true
         }
         return false
+    }
+
+    override fun registrarPuja(idSubasta: String, username: String, monto: Double) {
+        historialPujas.add(Puja(idSubasta, username, monto))
+    }
+
+    override fun getSubastasPujadasPorUsuario(username: String): List<Subasta> {
+        // Filtramos las pujas hechas por este usuario
+        val idsSubastasPujadas = historialPujas.filter { it.usernamePostor == username }
+                                               .map { it.idSubasta }
+                                               .distinct()
+        
+        // Devolvemos los objetos Subasta correspondientes a esos IDs
+        return listaDeSubastas.filter { idsSubastasPujadas.contains(it.id) }
     }
 }

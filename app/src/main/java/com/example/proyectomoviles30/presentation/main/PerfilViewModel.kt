@@ -15,8 +15,13 @@ class PerfilViewModel(
     private val _perfilData = MutableLiveData<PerfilData>()
     val perfilData: LiveData<PerfilData> get() = _perfilData
     
+    // Lista 1: Favoritos
     private val _favoritos = MutableLiveData<List<Subasta>>()
     val favoritos: LiveData<List<Subasta>> get() = _favoritos
+
+    // Lista 2: Mis Pujas
+    private val _misPujas = MutableLiveData<List<Subasta>>()
+    val misPujas: LiveData<List<Subasta>> get() = _misPujas
 
     data class PerfilData(
         val fullName: String,
@@ -46,14 +51,19 @@ class PerfilViewModel(
                 miembroDesde = data["miembroDesde"] ?: ""
             )
             
-            cargarFavoritos(username)
+            cargarListas(username)
         }
     }
     
-    private fun cargarFavoritos(username: String) {
+    private fun cargarListas(username: String) {
+        // 1. Cargar Favoritos
         val favoritosIds = userRepository.getFavoritos(username)
-        val subastas = subastaRepository.getSubastas()
-        val favsList = subastas.filter { favoritosIds.contains(it.id) }
+        val todasLasSubastas = subastaRepository.getSubastas()
+        val favsList = todasLasSubastas.filter { favoritosIds.contains(it.id) }
         _favoritos.value = favsList
+        
+        // 2. Cargar Mis Pujas
+        val pujadasList = subastaRepository.getSubastasPujadasPorUsuario(username)
+        _misPujas.value = pujadasList
     }
 }
