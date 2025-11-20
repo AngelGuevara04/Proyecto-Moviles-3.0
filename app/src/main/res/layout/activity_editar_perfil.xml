@@ -80,15 +80,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Sexo"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutTelefono"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextSexo"
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteSexo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
+                android:inputType="none"
                 android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
 

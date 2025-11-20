@@ -19,23 +19,23 @@
             android:name=".presentation.main.EditarPerfilActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.Subastas"
+            android:name=".presentation.main.SubastasActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.Buscar"
+            android:name=".presentation.main.BuscarActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.Perfil"
+            android:name=".presentation.main.PerfilActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.MenuInicio"
+            android:name=".presentation.main.MenuInicioActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.auth.Registro"
+            android:name=".presentation.auth.RegistroActivity"
             android:exported="false" />
 
         <activity
-            android:name=".presentation.auth.InicioDeSesion"
+            android:name=".presentation.auth.InicioDeSesionActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ProyectoMoviles30">

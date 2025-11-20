@@ -7,11 +7,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectomoviles30.R
+import com.example.proyectomoviles30.domain.model.Subasta
 
 class SubastasAdapter(
-    private val subastas: List<Subasta>,
+    private var subastas: List<Subasta>,
     private val onItemClick: (Subasta) -> Unit
 ) : RecyclerView.Adapter<SubastasAdapter.SubastaViewHolder>() {
+
+    fun updateList(newList: List<Subasta>) {
+        subastas = newList
+        notifyDataSetChanged()
+    }
 
     class SubastaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imagen: ImageView = itemView.findViewById(R.id.imageViewProducto)

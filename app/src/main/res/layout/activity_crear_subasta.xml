@@ -43,9 +43,9 @@
             android:id="@+id/buttonSubirImagen"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="160dp"
             android:layout_marginTop="32dp"
-            android:text="Tocar para subir imagen"
+            android:text="Tocar para cargar imagen"
             app:icon="@drawable/ic_baseline_add_photo_alternate_24"
             app:iconGravity="textTop"
             app:iconPadding="8dp"
@@ -56,6 +56,17 @@
             app:layout_constraintTop_toBottomOf="@id/textViewSubtituloCrear"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/imageViewPreview"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="32dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/textViewSubtituloCrear"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Campos de Texto para la subasta -->
         <com.google.android.material.textfield.TextInputLayout
@@ -81,7 +92,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Puja inicial (ej. 1500.00)"
+            android:hint="Puja inicial"
             app:prefixText="$"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutTitulo"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,14 +105,34 @@
                 android:inputType="numberDecimal"
                 android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
+        
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutIncremento"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Aumento mínimo para pujar"
+            app:prefixText="$"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutPuja"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextIncremento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textSize="15sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutTiempo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Tiempo restante (ej. 2d 5h)"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutPuja"
+            android:hint="Fecha y Hora límite"
+            app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutIncremento"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -109,7 +140,9 @@
                 android:id="@+id/editTextTiempo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="none"
                 android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
