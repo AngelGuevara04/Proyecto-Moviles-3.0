@@ -92,9 +92,18 @@ class DetalleSubastaActivity : AppCompatActivity() {
         val imageView = findViewById<ImageView>(R.id.imageViewProducto)
         if (subasta.imageUrl.isNotEmpty()) {
             try {
-                imageView.setImageURI(Uri.parse(subasta.imageUrl))
+                // Tomamos permiso persistente si es posible (para casos donde se abre directo desde favoritos/recientes y no se tomó al crear)
+                // Aunque lo ideal es tomarlo al crear, esto es un fallback seguro.
+                val uri = Uri.parse(subasta.imageUrl)
+                try {
+                    contentResolver.takePersistableUriPermission(uri, android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                } catch (e: SecurityException) {
+                    // Si no podemos tomar persistencia (ya la tenemos o no se puede), ignoramos y probamos cargar
+                }
+                imageView.setImageURI(uri)
             } catch (e: Exception) {
-                // Fallback image or error handling
+                // Si falla la carga de la imagen, no crasheamos la app
+                imageView.setImageResource(android.R.drawable.ic_menu_gallery) // Imagen por defecto
             }
         }
     }
