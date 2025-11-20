@@ -55,7 +55,7 @@ class MenuInicioActivity : AppCompatActivity() {
     private fun clearSessionPreference() {
         val preferences = PreferenceHelper.defaultPrefs(this)
         preferences["session"] = false
-        preferences["current_user_email"] = ""
+        preferences["current_username"] = ""
     }
 
     private fun irPerfil() {

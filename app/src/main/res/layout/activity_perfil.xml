@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="#F4F7F6"
-    tools:context=".presentation.main.Perfil">
+    tools:context=".presentation.main.PerfilActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
@@ -169,6 +169,27 @@
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
+        
+        <TextView
+            android:id="@+id/textViewMisFavoritosTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Mis Favoritos"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardDetalles" />
+            
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewFavoritos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMisFavoritosTitle" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonEditarPerfil"
@@ -176,9 +197,9 @@
             android:layout_height="wrap_content"
             android:text="Editar Perfil"
             android:padding="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             app:cornerRadius="16dp"
-            app:layout_constraintTop_toBottomOf="@id/cardDetalles"
+            app:layout_constraintTop_toBottomOf="@id/recyclerViewFavoritos"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -193,13 +214,12 @@
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackground"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintTop_toBottomOf="@id/buttonEditarPerfil"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="1.0"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

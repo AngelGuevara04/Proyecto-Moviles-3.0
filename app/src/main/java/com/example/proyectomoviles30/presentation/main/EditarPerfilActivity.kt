@@ -18,13 +18,15 @@ import com.google.android.material.textfield.TextInputEditText
 class EditarPerfilActivity : AppCompatActivity() {
 
     private lateinit var editTextNombre: TextInputEditText
+    private lateinit var editTextPrimerApellido: TextInputEditText
+    private lateinit var editTextSegundoApellido: TextInputEditText
     private lateinit var editTextTelefono: TextInputEditText
     private lateinit var autoCompleteSexo: AutoCompleteTextView
     private lateinit var editTextEdad: TextInputEditText
     
     private lateinit var viewModel: EditarPerfilViewModel
     
-    private var currentUserEmail: String? = null
+    private var currentUsername: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +50,8 @@ class EditarPerfilActivity : AppCompatActivity() {
 
     private fun initViews() {
         editTextNombre = findViewById(R.id.editTextNombre)
+        editTextPrimerApellido = findViewById(R.id.editTextPrimerApellido)
+        editTextSegundoApellido = findViewById(R.id.editTextSegundoApellido)
         editTextTelefono = findViewById(R.id.editTextTelefono)
         autoCompleteSexo = findViewById(R.id.autoCompleteSexo)
         editTextEdad = findViewById(R.id.editTextEdad)
@@ -60,8 +64,11 @@ class EditarPerfilActivity : AppCompatActivity() {
     }
 
     private fun populateData() {
-        currentUserEmail = intent.getStringExtra("USER_EMAIL")
+        currentUsername = intent.getStringExtra("USER_EMAIL") // Es el username realmente
+        
         editTextNombre.setText(intent.getStringExtra("USER_NAME"))
+        editTextPrimerApellido.setText(intent.getStringExtra("USER_PRIMER_APELLIDO"))
+        editTextSegundoApellido.setText(intent.getStringExtra("USER_SEGUNDO_APELLIDO"))
         editTextTelefono.setText(intent.getStringExtra("USER_TELEFONO"))
         autoCompleteSexo.setText(intent.getStringExtra("USER_SEXO"), false)
         editTextEdad.setText(intent.getStringExtra("USER_EDAD"))
@@ -88,8 +95,10 @@ class EditarPerfilActivity : AppCompatActivity() {
 
         buttonGuardar.setOnClickListener {
              viewModel.guardarCambios(
-                 currentUserEmail,
+                 currentUsername,
                  editTextNombre.text.toString(),
+                 editTextPrimerApellido.text.toString(),
+                 editTextSegundoApellido.text.toString(),
                  editTextTelefono.text.toString(),
                  autoCompleteSexo.text.toString(),
                  editTextEdad.text.toString()

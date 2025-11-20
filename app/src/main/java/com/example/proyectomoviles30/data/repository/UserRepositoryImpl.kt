@@ -13,24 +13,24 @@ class UserRepositoryImpl(private val context: Context) : UserRepository {
         PreferenceHelper.defaultPrefs(context)
     }
 
-    override fun getUser(email: String): User? {
-        val password = preferences["${email}_pass", ""]
-        val name = preferences["${email}_name", ""]
-        val primerApellido = preferences["${email}_primerApellido", ""]
-        val segundoApellido = preferences["${email}_segundoApellido", ""]
+    override fun getUser(username: String): User? {
+        val password = preferences["${username}_pass", ""]
+        val name = preferences["${username}_name", ""]
+        val primerApellido = preferences["${username}_primerApellido", ""]
+        val segundoApellido = preferences["${username}_segundoApellido", ""]
         
         if (password.isNotEmpty()) {
-            return User(email, name, primerApellido, if(segundoApellido.isNotEmpty()) segundoApellido else null, password)
+            return User(username, name, primerApellido, if(segundoApellido.isNotEmpty()) segundoApellido else null, password)
         }
         return null
     }
 
     override fun saveUser(user: User) {
-        // Usamos el email como nombre de usuario unico (ID)
-        preferences["${user.email}_name"] = user.name
-        preferences["${user.email}_primerApellido"] = user.primerApellido
-        preferences["${user.email}_segundoApellido"] = user.segundoApellido ?: ""
-        preferences["${user.email}_pass"] = user.password
+        // Usamos el username como ID unico
+        preferences["${user.username}_name"] = user.name
+        preferences["${user.username}_primerApellido"] = user.primerApellido
+        preferences["${user.username}_segundoApellido"] = user.segundoApellido ?: ""
+        preferences["${user.username}_pass"] = user.password
     }
 
     override fun isLoggedIn(): Boolean {
@@ -41,31 +41,37 @@ class UserRepositoryImpl(private val context: Context) : UserRepository {
         preferences["session"] = isLoggedIn
     }
 
-    override fun getCurrentUserEmail(): String? {
-        return preferences["current_user_email", ""]
+    override fun getCurrentUsername(): String? {
+        return preferences["current_username", ""]
     }
     
-    override fun setCurrentUserEmail(email: String) {
-        preferences["current_user_email"] = email
+    override fun setCurrentUsername(username: String) {
+        preferences["current_username"] = username
     }
 
-    override fun getUserProfileData(email: String): Map<String, String> {
-        val telefono = preferences["${email}_telefono", "No especificado"]
-        val sexo = preferences["${email}_sexo", "No especificado"]
-        val edad = preferences["${email}_edad", "No especificado"]
-        val miembroDesde = preferences["${email}_miembro_desde", "Ene 2024"]
-        val name = preferences["${email}_name", "Usuario"]
-        val primerApellido = preferences["${email}_primerApellido", ""]
-        val segundoApellido = preferences["${email}_segundoApellido", ""]
+    override fun getUserProfileData(username: String): Map<String, String> {
+        val telefono = preferences["${username}_telefono", "No especificado"]
+        val sexo = preferences["${username}_sexo", "No especificado"]
+        val edad = preferences["${username}_edad", "No especificado"]
+        val miembroDesde = preferences["${username}_miembro_desde", "Ene 2024"]
         
+        val name = preferences["${username}_name", "Usuario"]
+        val primerApellido = preferences["${username}_primerApellido", ""]
+        val segundoApellido = preferences["${username}_segundoApellido", ""]
+        
+        // Para mostrar el nombre completo en el Perfil
         val fullName = if (primerApellido.isNotEmpty()) {
             "$name $primerApellido" + (if (segundoApellido.isNotEmpty()) " $segundoApellido" else "")
         } else {
             name
         }
 
+        // Retornamos también los campos individuales para poder editar
         return mapOf(
-            "name" to fullName,
+            "fullName" to fullName,
+            "rawName" to name,
+            "primerApellido" to primerApellido,
+            "segundoApellido" to segundoApellido,
             "telefono" to telefono,
             "sexo" to sexo,
             "edad" to edad,
@@ -73,13 +79,51 @@ class UserRepositoryImpl(private val context: Context) : UserRepository {
         )
     }
 
-    override fun updateUserProfile(email: String, name: String, telefono: String, sexo: String, edad: String) {
-        // Nota: En editar perfil simplificado estamos asumiendo que "name" es el nombre completo o solo el primer nombre.
-        // Si quisiéramos editar apellidos por separado, tendríamos que cambiar la pantalla de editar perfil también.
-        // Por ahora, guardaremos el "name" recibido en el campo de nombre.
-        preferences["${email}_name"] = name
-        preferences["${email}_telefono"] = telefono
-        preferences["${email}_sexo"] = sexo
-        preferences["${email}_edad"] = edad
+    override fun updateUserProfile(
+        username: String, 
+        name: String, 
+        primerApellido: String, 
+        segundoApellido: String, 
+        telefono: String, 
+        sexo: String, 
+        edad: String
+    ) {
+        preferences["${username}_name"] = name
+        preferences["${username}_primerApellido"] = primerApellido
+        preferences["${username}_segundoApellido"] = segundoApellido
+        preferences["${username}_telefono"] = telefono
+        preferences["${username}_sexo"] = sexo
+        preferences["${username}_edad"] = edad
+    }
+
+    // Favoritos Implementation
+    override fun getFavoritos(username: String): List<String> {
+        val favsString = preferences["${username}_favoritos", ""]
+        if (favsString.isEmpty()) return emptyList()
+        return favsString.split(",").filter { it.isNotEmpty() }
+    }
+
+    override fun addFavorito(username: String, subastaId: String) {
+        val currentFavs = getFavoritos(username).toMutableList()
+        if (!currentFavs.contains(subastaId)) {
+            currentFavs.add(subastaId)
+            saveFavoritos(username, currentFavs)
+        }
+    }
+
+    override fun removeFavorito(username: String, subastaId: String) {
+        val currentFavs = getFavoritos(username).toMutableList()
+        if (currentFavs.remove(subastaId)) {
+            saveFavoritos(username, currentFavs)
+        }
+    }
+    
+    override fun isFavorito(username: String, subastaId: String): Boolean {
+        return getFavoritos(username).contains(subastaId)
+    }
+
+    private fun saveFavoritos(username: String, list: List<String>) {
+        val favsString = list.joinToString(",")
+        preferences["${username}_favoritos"] = favsString
     }
 }

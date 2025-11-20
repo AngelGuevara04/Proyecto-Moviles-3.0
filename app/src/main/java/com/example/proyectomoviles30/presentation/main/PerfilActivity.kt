@@ -4,17 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectomoviles30.R
 import com.example.proyectomoviles30.presentation.ViewModelFactory
 
 class PerfilActivity : AppCompatActivity() {
 
     private lateinit var viewModel: PerfilViewModel
+    private lateinit var recyclerViewFavoritos: RecyclerView
+    private lateinit var favoritosAdapter: SubastasAdapter
     
     private var currentData: PerfilViewModel.PerfilData? = null
 
@@ -31,6 +36,7 @@ class PerfilActivity : AppCompatActivity() {
         val factory = ViewModelFactory(this)
         viewModel = ViewModelProvider(this, factory)[PerfilViewModel::class.java]
 
+        setupRecyclerView()
         setupObservers()
         setupListeners()
     }
@@ -39,11 +45,26 @@ class PerfilActivity : AppCompatActivity() {
         super.onResume()
         viewModel.cargarDatos()
     }
+    
+    private fun setupRecyclerView() {
+        recyclerViewFavoritos = findViewById(R.id.recyclerViewFavoritos)
+        favoritosAdapter = SubastasAdapter(emptyList()) { subastaClickeada ->
+            val intent = Intent(this, DetalleSubastaActivity::class.java)
+            intent.putExtra("SUBASTA_ID", subastaClickeada.id)
+            startActivity(intent)
+        }
+        recyclerViewFavoritos.adapter = favoritosAdapter
+        recyclerViewFavoritos.layoutManager = LinearLayoutManager(this)
+    }
 
     private fun setupObservers() {
         viewModel.perfilData.observe(this) { data ->
             currentData = data
             updateUI(data)
+        }
+        
+        viewModel.favoritos.observe(this) { favs ->
+            favoritosAdapter.updateList(favs)
         }
     }
     
@@ -56,9 +77,9 @@ class PerfilActivity : AppCompatActivity() {
         val tvEdad = findViewById<TextView>(R.id.textViewEdad)
         val tvMiembroDesde = findViewById<TextView>(R.id.textViewMiembroDesde)
 
-        tvBienvenido.text = "¡Bienvenido, ${data.name}!"
-        tvNombreCompleto.text = data.name
-        tvEmail.text = data.email
+        tvBienvenido.text = "¡Bienvenido, ${data.rawName}!" // Usamos solo el nombre pila para la bienvenida
+        tvNombreCompleto.text = data.fullName // Nombre completo con apellidos
+        tvEmail.text = data.username
         tvTelefono.text = data.telefono
         tvSexo.text = data.sexo
         tvEdad.text = data.edad
@@ -80,8 +101,10 @@ class PerfilActivity : AppCompatActivity() {
     private fun irAEditarPerfil() {
         val intent = Intent(this, EditarPerfilActivity::class.java)
         currentData?.let {
-            intent.putExtra("USER_EMAIL", it.email)
-            intent.putExtra("USER_NAME", it.name)
+            intent.putExtra("USER_EMAIL", it.username) // Identifier
+            intent.putExtra("USER_NAME", it.rawName)
+            intent.putExtra("USER_PRIMER_APELLIDO", it.primerApellido)
+            intent.putExtra("USER_SEGUNDO_APELLIDO", it.segundoApellido)
             intent.putExtra("USER_TELEFONO", it.telefono)
             intent.putExtra("USER_SEXO", it.sexo)
             intent.putExtra("USER_EDAD", it.edad)

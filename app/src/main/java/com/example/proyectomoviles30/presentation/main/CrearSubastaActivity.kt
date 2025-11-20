@@ -2,6 +2,7 @@ package com.example.proyectomoviles30.presentation.main
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -41,6 +42,15 @@ class CrearSubastaActivity : AppCompatActivity() {
     
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
+            try {
+                // Intentamos tomar persistencia de permisos para que la URI sirva despues
+                val takeFlags: Int = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                contentResolver.takePersistableUriPermission(it, takeFlags)
+            } catch (e: Exception) {
+                // Si falla (ej. no es persistible), continuamos igual, aunque podria fallar luego al leer
+                e.printStackTrace()
+            }
+            
             selectedImageUri = it
             imageViewPreview.setImageURI(it)
             imageViewPreview.visibility = android.view.View.VISIBLE

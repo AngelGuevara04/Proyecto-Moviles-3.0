@@ -60,7 +60,9 @@ class SubastasActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerViewSubastas)
         subastasAdapter = SubastasAdapter(emptyList()) { subastaClickeada ->
-            Toast.makeText(this, "Viendo subasta de: ${subastaClickeada.titulo}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, DetalleSubastaActivity::class.java)
+            intent.putExtra("SUBASTA_ID", subastaClickeada.id)
+            startActivity(intent)
         }
         recyclerView.adapter = subastasAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)

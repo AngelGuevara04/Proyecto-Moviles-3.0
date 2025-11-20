@@ -18,8 +18,8 @@ class RegistroViewModel(private val userRepository: UserRepository) : ViewModel(
         data class Error(val message: String) : RegistroState()
     }
 
-    fun registrar(nombre: String, primerApellido: String, segundoApellido: String, email: String, pass: String, repeatPass: String) {
-        if (nombre.isBlank() || primerApellido.isBlank() || email.isBlank() || pass.isBlank() || repeatPass.isBlank()) {
+    fun registrar(nombre: String, primerApellido: String, segundoApellido: String, username: String, pass: String, repeatPass: String) {
+        if (nombre.isBlank() || primerApellido.isBlank() || username.isBlank() || pass.isBlank() || repeatPass.isBlank()) {
             _registroState.value = RegistroState.Error("Por favor, completa todos los campos requeridos")
             return
         }
@@ -29,13 +29,14 @@ class RegistroViewModel(private val userRepository: UserRepository) : ViewModel(
             return
         }
 
-        val existingUser = userRepository.getUser(email)
+        // Verificación de usuario existente
+        val existingUser = userRepository.getUser(username)
         if (existingUser != null) {
-            _registroState.value = RegistroState.Error("El nombre de usuario / correo ya está registrado")
+            _registroState.value = RegistroState.Error("El nombre de usuario '$username' ya está en uso. Por favor, elige otro.")
             return
         }
 
-        val newUser = User(email, nombre, primerApellido, if(segundoApellido.isBlank()) null else segundoApellido, pass)
+        val newUser = User(username, nombre, primerApellido, if(segundoApellido.isBlank()) null else segundoApellido, pass)
         userRepository.saveUser(newUser)
         _registroState.value = RegistroState.Success
     }

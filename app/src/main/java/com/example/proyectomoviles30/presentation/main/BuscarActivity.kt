@@ -1,5 +1,6 @@
 package com.example.proyectomoviles30.presentation.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.lifecycle.ViewModelProvider
 import com.example.proyectomoviles30.R
-import com.example.proyectomoviles30.domain.model.Subasta
 import com.example.proyectomoviles30.presentation.ViewModelFactory
 
 class BuscarActivity : AppCompatActivity() {
@@ -59,7 +59,9 @@ class BuscarActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         subastasAdapter = SubastasAdapter(emptyList()) { subastaClickeada ->
-            Toast.makeText(this, "Viendo subasta de: ${subastaClickeada.titulo}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, DetalleSubastaActivity::class.java)
+            intent.putExtra("SUBASTA_ID", subastaClickeada.id)
+            startActivity(intent)
         }
         recyclerViewResultados.adapter = subastasAdapter
         recyclerViewResultados.layoutManager = LinearLayoutManager(this)
@@ -67,9 +69,6 @@ class BuscarActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         // Observamos cambios en la lista de subastas (por si se cargan más o cambian)
-        // NOTA: En un caso real de "Buscar", quizás el ViewModel debería tener un método "filtrar" 
-        // y exponer un LiveData de resultadosFiltrados. 
-        // Por simplicidad aquí filtraremos en la vista basándonos en la lista completa del ViewModel.
     }
 
     private fun setupSearchListener() {

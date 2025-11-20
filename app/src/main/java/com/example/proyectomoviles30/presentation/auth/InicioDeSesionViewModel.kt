@@ -24,16 +24,16 @@ class InicioDeSesionViewModel(private val userRepository: UserRepository) : View
         }
     }
 
-    fun login(usernameOrEmail: String, password: String) {
-        if (usernameOrEmail.isBlank() || password.isBlank()) {
+    fun login(username: String, password: String) {
+        if (username.isBlank() || password.isBlank()) {
             _loginState.value = LoginState.Error("Ingresa usuario y contraseña")
             return
         }
 
-        val user = userRepository.getUser(usernameOrEmail)
+        val user = userRepository.getUser(username)
         if (user != null && user.password == password) {
             userRepository.setLoggedIn(true)
-            userRepository.setCurrentUserEmail(usernameOrEmail)
+            userRepository.setCurrentUsername(username)
             _loginState.value = LoginState.Success
         } else {
             _loginState.value = LoginState.Error("Usuario o contraseña incorrectos")
@@ -42,7 +42,7 @@ class InicioDeSesionViewModel(private val userRepository: UserRepository) : View
 
     fun loginInvitado() {
         userRepository.setLoggedIn(true)
-        userRepository.setCurrentUserEmail("invitado@mail.com")
+        userRepository.setCurrentUsername("invitado_guest")
         _loginState.value = LoginState.SuccessGuest
     }
 }

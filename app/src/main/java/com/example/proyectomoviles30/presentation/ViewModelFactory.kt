@@ -8,6 +8,7 @@ import com.example.proyectomoviles30.data.repository.UserRepositoryImpl
 import com.example.proyectomoviles30.presentation.auth.InicioDeSesionViewModel
 import com.example.proyectomoviles30.presentation.auth.RegistroViewModel
 import com.example.proyectomoviles30.presentation.main.CrearSubastaViewModel
+import com.example.proyectomoviles30.presentation.main.DetalleSubastaViewModel
 import com.example.proyectomoviles30.presentation.main.EditarPerfilViewModel
 import com.example.proyectomoviles30.presentation.main.PerfilViewModel
 import com.example.proyectomoviles30.presentation.main.SubastasViewModel
@@ -40,7 +41,11 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
         }
         if (modelClass.isAssignableFrom(PerfilViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return PerfilViewModel(userRepository) as T
+            return PerfilViewModel(userRepository, subastaRepository) as T
+        }
+        if (modelClass.isAssignableFrom(DetalleSubastaViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return DetalleSubastaViewModel(subastaRepository, userRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

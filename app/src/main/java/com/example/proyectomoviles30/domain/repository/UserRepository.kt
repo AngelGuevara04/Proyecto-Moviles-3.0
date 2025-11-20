@@ -3,14 +3,30 @@ package com.example.proyectomoviles30.domain.repository
 import com.example.proyectomoviles30.domain.model.User
 
 interface UserRepository {
-    fun getUser(email: String): User?
+    fun getUser(username: String): User?
     fun saveUser(user: User)
     fun isLoggedIn(): Boolean
     fun setLoggedIn(isLoggedIn: Boolean)
-    fun getCurrentUserEmail(): String?
-    fun setCurrentUserEmail(email: String)
+    fun getCurrentUsername(): String?
+    fun setCurrentUsername(username: String)
     
     // Métodos para perfil extendido
-    fun getUserProfileData(email: String): Map<String, String>
-    fun updateUserProfile(email: String, name: String, telefono: String, sexo: String, edad: String)
+    fun getUserProfileData(username: String): Map<String, String>
+    
+    // Actualizamos la firma para aceptar los nombres por separado
+    fun updateUserProfile(
+        username: String, 
+        name: String, 
+        primerApellido: String, 
+        segundoApellido: String, 
+        telefono: String, 
+        sexo: String, 
+        edad: String
+    )
+    
+    // Favoritos
+    fun getFavoritos(username: String): List<String> 
+    fun addFavorito(username: String, subastaId: String)
+    fun removeFavorito(username: String, subastaId: String)
+    fun isFavorito(username: String, subastaId: String): Boolean
 }

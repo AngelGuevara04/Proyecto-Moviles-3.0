@@ -19,7 +19,22 @@ class SubastaRepositoryImpl : SubastaRepository {
         return listaDeSubastas
     }
 
+    override fun getSubastaById(id: String): Subasta? {
+        return listaDeSubastas.find { it.id == id }
+    }
+
     override fun addSubasta(subasta: Subasta) {
         listaDeSubastas.add(subasta)
+    }
+
+    override fun actualizarPuja(id: String, nuevaPuja: Double): Boolean {
+        val index = listaDeSubastas.indexOfFirst { it.id == id }
+        if (index != -1) {
+            val subastaAntigua = listaDeSubastas[index]
+            val subastaActualizada = subastaAntigua.copy(pujaActual = nuevaPuja)
+            listaDeSubastas[index] = subastaActualizada
+            return true
+        }
+        return false
     }
 }
